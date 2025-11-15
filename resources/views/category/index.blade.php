@@ -13,6 +13,7 @@
             <tr class="bg-gray-200">
                 <th class="px-4 py-2 border">ID</th>
                 <th class="px-4 py-2 border">Nama Kategori</th>
+                <th class="px-4 py-2 border">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +21,7 @@
             <tr>
                 <td class="px-4 py-2 border">{{ $category->id }}</td>
                 <td class="px-4 py-2 border">{{ $category->name }}</td>
-                <td class="px-4 py-2 border flex gap-2">
+                <td class="px-4 py-2 border flex gap-2.5">
 
                     <a href="{{ route('webapp.edit', $category->id) }}" 
                        class="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600">
