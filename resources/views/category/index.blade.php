@@ -20,7 +20,7 @@
             @foreach ($categories as $category)
             <tr>
                 <td class="px-4 py-2 border">{{ $category->id }}</td>
-                <td class="px-4 py-2 border">{{ $category->name }}</td>
+                <td class="px-4 py-2 border">{{ $category->category_name }}</td>
                 <td class="px-4 py-2 border flex gap-2.5">
 
                     <a href="{{ route('category.edit', $category->id) }}" 
@@ -28,7 +28,7 @@
                        Edit
                     </a>
 
-                    <form action="{{ route('category.destroy', $category->name) }}" 
+                    <form action="{{ route('category.destroy', $category->id) }}" 
                           method="POST"
                           onsubmit="return confirm('Hapus data ini?')">
                         @csrf

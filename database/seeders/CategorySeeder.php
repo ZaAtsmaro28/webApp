@@ -13,11 +13,11 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('categories')->insert([
-            ['name' => 'Salary'],
-            ['name' => 'Other Income'],
-            ['name' => 'Family Expense'],
-            ['name' => 'Transport Expense'],
-            ['name' => 'Meal Expense']
+            ['category_name' => 'Salary'],
+            ['category_name' => 'Other Income'],
+            ['category_name' => 'Family Expense'],
+            ['category_name' => 'Transport Expense'],
+            ['category_name' => 'Meal Expense']
         ]);
     }
 }
