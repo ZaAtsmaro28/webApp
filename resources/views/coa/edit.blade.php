@@ -15,12 +15,12 @@
         <label class="block mb-2 font-semibold">Kategori</label>
         <select name="category" class="w-full px-3 py-2 border rounded mb-4">
             @foreach ($categories as $category)
-                <option value="{{ $category->category_name }}"
-                    {{ $item->category == $category->category_name ? 'selected' : '' }}>
+                <option value="{{ $category->category_name }}" 
+                    {{ $category->category_name == $item->category ? 'selected':'' }} >
                     {{ $category->category_name }}
                 </option>
             @endforeach
-        </select>
+        </select> 
 
         <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
             Update

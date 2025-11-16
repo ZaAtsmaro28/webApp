@@ -59,17 +59,33 @@ class MasterChartController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MasterChart $masterChart)
+    public function edit(string $coa_code)
     {
-        //
+        $categories = Category::all();
+        $item = MasterChart::find($coa_code);
+
+        return view('coa.edit', compact('categories', 'item'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MasterChart $masterChart)
+    public function update(Request $request, string $coa_code)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $item = MasterChart::find($coa_code);
+
+        $item->update([
+            'name' => $request->name,
+            'category' => $request->category
+        ]);
+
+        return redirect()
+            ->route('coa.index')
+            ->with('success', '1 data row updated successfully');
     }
 
     /**
