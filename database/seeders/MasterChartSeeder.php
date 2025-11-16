@@ -34,7 +34,7 @@ class MasterChartSeeder extends Seeder
                 'category' => 'Family Expense'
             ],
             [
-                'coa_code' => '402',
+                'coa_code' => '602',
                 'name' => 'Bensin',
                 'category' => 'Transport'
             ],
