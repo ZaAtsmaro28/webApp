@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <h2 class="text-xl font-bold mb-4">Data Tabel Chart Of Account(COA)</h2>
+
     <div class="mb-4">
         <a href="{{ route('coa.create') }}" 
            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-           Tambah Kategori
+           Tambah Sumber
         </a>
     </div>
 
@@ -25,12 +28,12 @@
                 <td class="px-4 py-2 border">{{ $item->category }}</td>
                 <td class="px-4 py-2 border flex gap-2.5">
 
-                    <a href="{{ route('coa.edit', $item->coa_id) }}" 
+                    <a href="{{ route('coa.edit', $item->coa_code) }}" 
                        class="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600">
                        Edit
                     </a>
 
-                    <form action="{{ route('coa.destroy', $item->coa_id) }}" 
+                    <form action="{{ route('coa.destroy', $item->coa_code) }}" 
                           method="POST"
                           onsubmit="return confirm('Hapus data ini?')">
                         @csrf

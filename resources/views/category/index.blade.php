@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <h2 class="text-xl font-bold mb-4">Data Tabel Kategori</h2>
+
     <div class="mb-4">
         <a href="{{ route('category.create') }}" 
            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
