@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("category.create", ["title" => "Form Tambah Kategori"]);
     }
 
     /**
@@ -34,7 +34,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_name'=>'required|string|min:2|max:255'
+        ]);
+
+        Category::create([
+            'category_name'=>$request->category_name
+        ]);
+
+        return redirect()
+            ->route('category.index')
+            ->with('success', 'new category created');
     }
 
     /**
@@ -50,7 +60,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('category.edit', ['title'=>'Edit Kategori'], ['category'=>$category]);
     }
 
     /**
@@ -58,7 +70,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'category_name'=>'required|string|min:2|max:255'
+        ]);
+
+        $category = Category::find($id);
+
+        $category->update([
+            'category_name'=>$request->category_name
+        ]);
+
+        return redirect()
+            ->route('category.index')
+            ->with('success', 'category successfully updated');
     }
 
     /**
@@ -66,6 +90,12 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->delete();
+
+        return redirect()
+            ->route('category.index')
+            ->with('success', 'category deleted');
     }
 }
