@@ -61,8 +61,13 @@ class TransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(string $id)
     {
-        //
+        $transaction = Transaction::find($id);
+        $transaction->delete();
+
+        return redirect()
+            ->route('transaction.index')
+            ->with('success', '1 row deleted from transaction table');
     }
 }
