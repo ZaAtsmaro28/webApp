@@ -16,7 +16,7 @@
         <label class="block mb-2 font-semibold">Kategori</label>
         <select name="category" class="w-full px-3 py-2 border rounded mb-4">
             @foreach ($categories as $category)
-                <option value="{{ $category->category_name }}">
+                <option value="{{ $category->id }}">
                     {{ $category->category_name }}
                 </option>
             @endforeach

@@ -13,7 +13,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::all();
+        $transactions = Transaction::with('masterChart')->get();
 
         return view('transaction.index', ['transactions' => $transactions]);
     }
@@ -32,14 +32,10 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $coa = $request->coa; 
-
-        list($coa_code, $coa_name) = explode('|', $coa);
 
         Transaction::create([
             'date' => $request->date,
-            'coa_code' => $coa_code,
-            'coa_name' => $coa_name,
+            'coa_code' => $request->coa,
             'desc' => $request->desc,
             'debit' => $request->debit,
             'credit' => $request->credit,
@@ -51,19 +47,11 @@ class TransactionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $transaction = Transaction::find($id);
+        $transaction = Transaction::with('masterChart')->find($id);
 
         $items = MasterChart::all();
 
@@ -75,16 +63,12 @@ class TransactionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $coa = $request->coa; 
-
-        list($coa_code, $coa_name) = explode('|', $coa);
 
         $transaction = Transaction::find($id);
 
         $transaction->update([
             'date' => $request->date,
-            'coa_code' => $coa_code,
-            'coa_name' => $coa_name,
+            'coa_code' => $request->coa,
             'desc' => $request->desc,
             'debit' => $request->debit,
             'credit' => $request->credit,

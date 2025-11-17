@@ -25,7 +25,7 @@
             <tr>
                 <td class="px-4 py-2 border">{{ $item->coa_code }}</td>
                 <td class="px-4 py-2 border">{{ $item->name }}</td>
-                <td class="px-4 py-2 border">{{ $item->category }}</td>
+                <td class="px-4 py-2 border">{{ $item->category->category_name }}</td>
                 <td class="px-4 py-2 border flex gap-2.5">
 
                     <a href="{{ route('coa.edit', $item->coa_code) }}" 

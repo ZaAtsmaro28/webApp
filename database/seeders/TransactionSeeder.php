@@ -15,32 +15,36 @@ class TransactionSeeder extends Seeder
         DB::table('transactions')->insert([
             [
                 'date'      => '2025-01-10',
-                'coa_code'  => '401',
-                'coa_name'  => 'Gaji Karyawan',
+                'coa_code'  => DB::table('master_charts')
+                    ->where('name', 'Gaji Karyawan')
+                    ->firstOrFail()->coa_code,
                 'desc'      => 'Penerimaan gaji bulanan',
                 'debit'     => '5000000',
                 'credit'    => '0',
             ],
             [
                 'date'      => '2025-01-11',
-                'coa_code'  => '604',
-                'coa_name'  => 'Makan Siang',
+                'coa_code'  => DB::table('master_charts')
+                    ->where('name', 'Makan Siang')
+                    ->firstOrFail()->coa_code,
                 'desc'      => 'Biaya makan siang kantor',
                 'debit'     => '0',
                 'credit'    => '150000',
             ],
             [
                 'date'      => '2025-01-12',
-                'coa_code'  => '402',
-                'coa_name'  => 'Gaji Ketua MPR',
+                'coa_code'  => DB::table('master_charts')
+                    ->where('name', 'Gaji Ketua MPR')
+                    ->firstOrFail()->coa_code,
                 'desc'      => 'Pendapatan sebagai ketum MPR',
                 'debit'     => '5200000',
                 'credit'    => '0',
             ],
             [
                 'date'      => '2025-01-13',
-                'coa_code'  => '602',
-                'coa_name'  => 'Bensin',
+                'coa_code'  => DB::table('master_charts')
+                    ->where('name', 'Bensin')
+                    ->firstOrFail()->coa_code,
                 'desc'      => 'Pengeluaran transportasi',
                 'debit'     => '0',
                 'credit'    => '80000',

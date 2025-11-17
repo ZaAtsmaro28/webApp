@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->string('coa_code');
-            $table->string('coa_name');
             $table->string('desc');
             $table->string('debit');
             $table->string('credit');
+            $table->foreign('coa_code')
+                ->references('coa_code')
+                ->on('master_charts');
         });
     }
 

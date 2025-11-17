@@ -13,7 +13,8 @@ class MasterChartController extends Controller
      */
     public function index()
     {
-        $items = MasterChart::all();
+        $items = MasterChart::with('category')->get();
+
 
         return view('coa.index',[
             'title'=>'Chart Of Account',
@@ -48,7 +49,7 @@ class MasterChartController extends Controller
         MasterChart::create([
             'coa_code' => $request->coa_code,
             'name' => $request->name,
-            'category' => $request->category
+            'category_id' => $request->category
         ]);
 
         return redirect()
@@ -62,7 +63,7 @@ class MasterChartController extends Controller
     public function edit(string $coa_code)
     {
         $categories = Category::all();
-        $item = MasterChart::find($coa_code);
+        $item = MasterChart::with('category')->find($coa_code);
 
         return view('coa.edit', compact('categories', 'item'));
     }
@@ -80,7 +81,7 @@ class MasterChartController extends Controller
 
         $item->update([
             'name' => $request->name,
-            'category' => $request->category
+            'category_id' => $request->category
         ]);
 
         return redirect()

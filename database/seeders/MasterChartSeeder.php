@@ -16,42 +16,42 @@ class MasterChartSeeder extends Seeder
             [
                 'coa_code' => '401',
                 'name' => 'Gaji Karyawan',
-                'category' => 'Salary'
+                'category_id' => DB::table('categories')->where('category_name', 'Salary')->firstOrFail()->id
             ],
             [
                 'coa_code' => '402',
                 'name' => 'Gaji Ketua MPR',
-                'category' => 'Salary'
+                'category_id' => DB::table('categories')->where('category_name', 'Salary')->firstOrFail()->id
             ],
             [
                 'coa_code' => '403',
                 'name' => 'Profit Trading',
-                'category' => 'Other Income'
+                'category_id' => DB::table('categories')->where('category_name', 'Other Income')->firstOrFail()->id
             ],
             [
                 'coa_code' => '601',
                 'name' => 'Biaya Sekolah',
-                'category' => 'Family Expense'
+                'category_id' => DB::table('categories')->where('category_name', 'Family Expense')->firstOrFail()->id
             ],
             [
                 'coa_code' => '602',
                 'name' => 'Bensin',
-                'category' => 'Transport'
+                'category_id' => DB::table('categories')->where('category_name', 'Transport Expense')->firstOrFail()->id
             ],
             [
                 'coa_code' => '603',
                 'name' => 'Parkir',
-                'category' => 'Transport'
+                'category_id' => DB::table('categories')->where('category_name', 'Transport Expense')->firstOrFail()->id
             ],
             [
                 'coa_code' => '604',
                 'name' => 'Makan Siang',
-                'category' => 'Meal Expense'
+                'category_id' => DB::table('categories')->where('category_name', 'Meal Expense')->firstOrFail()->id
             ],
             [
                 'coa_code' => '605',
                 'name' => 'Makanan Pokok Bulanan',
-                'category' => 'Meal Expense'
+                'category_id' => DB::table('categories')->where('category_name', 'Meal Expense')->firstOrFail()->id
             ]
         ]);
     }

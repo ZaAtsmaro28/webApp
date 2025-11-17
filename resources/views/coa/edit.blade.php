@@ -15,8 +15,8 @@
         <label class="block mb-2 font-semibold">Kategori</label>
         <select name="category" class="w-full px-3 py-2 border rounded mb-4">
             @foreach ($categories as $category)
-                <option value="{{ $category->category_name }}" 
-                    {{ $category->category_name == $item->category ? 'selected':'' }} >
+                <option value="{{ $category->id }}" 
+                    {{ $category->category_name == $item->category->category_name ? 'selected':'' }} >
                     {{ $category->category_name }}
                 </option>
             @endforeach

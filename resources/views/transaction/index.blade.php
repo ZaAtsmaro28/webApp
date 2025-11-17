@@ -31,8 +31,8 @@
             @foreach ($transactions as $transaction)
             <tr>
                 <td class="px-4 py-2 border">{{ $transaction->date }}</td>
-                <td class="px-4 py-2 border">{{ $transaction->coa_code }}</td>
-                <td class="px-4 py-2 border">{{ $transaction->coa_name }}</td>
+                <td class="px-4 py-2 border">{{ $transaction->masterChart->coa_code }}</td>
+                <td class="px-4 py-2 border">{{ $transaction->masterChart->name }}</td>
                 <td class="px-4 py-2 border">{{ $transaction->desc }}</td>
                 <td class="px-4 py-2 border">{{ $transaction->debit }}</td>
                 <td class="px-4 py-2 border">{{ $transaction->credit }}</td>

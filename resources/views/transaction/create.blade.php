@@ -17,7 +17,7 @@
         <label class="block mb-2 font-semibold">Jenis Sumber COA</label>
         <select name="coa" class="w-full px-3 py-2 border rounded mb-4">
             @foreach ($items as $item)
-                <option value="{{ $item->coa_code . '|' . $item->name }}">
+                <option value="{{ $item->coa_code}}">
                     {{ $item->coa_code }} - {{ $item->name }}
                 </option>
             @endforeach

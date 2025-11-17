@@ -10,10 +10,13 @@ class Transaction extends Model
 
     protected $fillable = [
         'date', 
-        'coa_code', 
-        'coa_name', 
+        'coa_code',  
         'desc', 
         'debit', 
         'credit'
     ];
+
+    public function masterChart() {
+        return $this->belongsTo(MasterChart::class, 'coa_code', 'coa_code');
+    }
 }
