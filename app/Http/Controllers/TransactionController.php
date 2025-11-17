@@ -61,16 +61,38 @@ class TransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaction $transaction)
+    public function edit(string $id)
     {
+        $transaction = Transaction::find($id);
+
+        $items = MasterChart::all();
+
+        return view('transaction.edit', compact('transaction', 'items'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, string $id)
     {
-        //
+        $coa = $request->coa; 
+
+        list($coa_code, $coa_name) = explode('|', $coa);
+
+        $transaction = Transaction::find($id);
+
+        $transaction->update([
+            'date' => $request->date,
+            'coa_code' => $coa_code,
+            'coa_name' => $coa_name,
+            'desc' => $request->desc,
+            'debit' => $request->debit,
+            'credit' => $request->credit,
+        ]);
+
+        return redirect()
+            ->route('transaction.index')
+            ->with('success', '1 row updated from transaction table');
     }
 
     /**
