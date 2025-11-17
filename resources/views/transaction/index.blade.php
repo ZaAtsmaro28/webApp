@@ -4,9 +4,14 @@
     <h2 class="text-xl font-bold mb-4">Data Tabel Riwayat Transaksi</h2>
 
     <div class="mb-4">
-        <a href="{{ route('category.create') }}" 
-           class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        <a href="{{ route('transaction.create') }}" 
+           class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2">
            Transaksi Baru
+        </a>
+        
+        <a href="" 
+           class="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700">
+           Cetak Laporan
         </a>
     </div>
 
@@ -19,6 +24,7 @@
                 <th class="px-4 py-2 border">Deskripsi</th>
                 <th class="px-4 py-2 border">Debit</th>
                 <th class="px-4 py-2 border">Kredit</th>
+                <th class="px-4 py-2 border">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -30,14 +36,16 @@
                 <td class="px-4 py-2 border">{{ $transaction->desc }}</td>
                 <td class="px-4 py-2 border">{{ $transaction->debit }}</td>
                 <td class="px-4 py-2 border">{{ $transaction->credit }}</td>
-                <td class="px-4 py-2 border flex gap-2.5">
+                <td class="px-4 py-2 border">
 
                     <a href="{{ route('transaction.edit', $transaction->id) }}" 
                        class="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600">
                        Edit
                     </a>
 
-                    <form action="{{ route('category.destroy', $transaction->id) }}" 
+                    <div class="mt-3"></div>
+
+                    <form action="{{ route('transaction.destroy', $transaction->id) }}" 
                           method="POST"
                           onsubmit="return confirm('Hapus data ini?')">
                         @csrf

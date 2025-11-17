@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    //
+    public $timestamps = false;
+
+    protected $fillable = [
+        'date', 
+        'coa_code', 
+        'coa_name', 
+        'desc', 
+        'debit', 
+        'credit'
+    ];
 }
