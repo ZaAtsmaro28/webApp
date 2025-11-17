@@ -12,7 +12,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::all();
+
+        return view('transaction.index', ['transactions' => $transactions]);
     }
 
     /**
@@ -28,7 +30,8 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //list($coa_code, $name) = explode('|', $request->category);
+
     }
 
     /**
