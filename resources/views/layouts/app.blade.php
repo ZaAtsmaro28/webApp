@@ -17,12 +17,12 @@
         {{-- GLOBAL NAVIGATION (TAB MENU) --}}
         <nav class="flex space-x-4 mb-6 border-b pb-2">
 
-            <a href="{{ route('home') }}"
+            <a href="{{ route('transaction.index') }}"
                class="px-3 py-2 font-semibold
-               {{ request()->routeIs('home') 
+               {{ request()->routeIs('transaction.*') 
                    ? 'text-green-600 border-b-2 border-green-600' 
                    : 'text-gray-600 hover:text-gray-800' }}">
-                Halaman Utama
+                Halaman Utama/Transaksi
             </a>
 
             <a href="{{ route('category.index') }}"
