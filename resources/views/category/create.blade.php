@@ -8,6 +8,12 @@
         <label class="block mb-2 font-semibold">Nama Kategori</label>
         <input type="text" name="category_name" 
                class="w-full px-3 py-2 border rounded mb-4">
+               
+        <label class="block mb-2 font-semibold">Jenis Kategori</label>
+        <select name="type" id="type" class="w-full px-3 py-2 border rounded mb-4">
+            <option value="income">income</option>
+            <option value="expense">expense</option>
+        </select> 
 
         <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
             Simpan

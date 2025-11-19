@@ -39,7 +39,8 @@ class CategoryController extends Controller
         ]);
 
         Category::create([
-            'category_name'=>$request->category_name
+            'category_name'=>$request->category_name,
+            'type'=>$request->type
         ]);
 
         return redirect()
@@ -69,7 +70,8 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $category->update([
-            'category_name'=>$request->category_name
+            'category_name'=>$request->category_name,
+            'type'=>$request->type
         ]);
 
         return redirect()

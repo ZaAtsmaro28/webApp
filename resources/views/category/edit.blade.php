@@ -12,6 +12,12 @@
         <input type="text" name="category_name" value="{{ $category->category_name }}"
                class="w-full px-3 py-2 border rounded mb-4">
 
+        <label class="block mb-2 font-semibold">Jenis Kategori</label>
+        <select name="type" id="type" class="w-full px-3 py-2 border rounded mb-4">
+            <option value="income" {{$category->type === 'income' ? 'selected':''}}>income</option>
+            <option value="expense" {{$category->type === 'expense' ? 'selected':''}}>expense</option>
+        </select>       
+
         <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
             Update
         </button>

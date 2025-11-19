@@ -2,12 +2,14 @@
 
 @section('content')
 
-    {{-- <form action="{{ route('coa.store') }}" method="POST" class="bg-white p-6 rounded shadow">
+    <form action="{{ route('coa.store') }}" method="POST" class="bg-white p-6 rounded shadow">
         @csrf
 
         <label class="block mb-2 font-semibold">Kode COA</label>
         <input type="text" name="coa_code" 
-               class="w-full px-3 py-2 border rounded mb-4">
+            id="coa_code"
+            maxlength="3"
+            class="w-full px-3 py-2 border rounded mb-4">
         
         @error('coa_code_error_message')
             <div class="text-red-500">{{ $message }}</div>
@@ -16,93 +18,80 @@
 
         <label class="block mb-2 font-semibold">Nama Sumber</label>
         <input type="text" name="name" 
-               class="w-full px-3 py-2 border rounded mb-4">
+            class="w-full px-3 py-2 border rounded mb-4">
 
         <label class="block mb-2 font-semibold">Kategori</label>
-        <select name="category" class="w-full px-3 py-2 border rounded mb-4">
+        <select name="category" id="category" class="w-full px-3 py-2 border rounded mb-4">
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}">
+                <option value="{{ $category->id }}"
+                        data-type="{{ $category->type }}">
                     {{ $category->category_name }}
                 </option>
             @endforeach
         </select>  
-
-
 
         <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
             Simpan
         </button>
 
         <a href="{{ route('coa.index') }}" 
-           class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 ml-2">
-           Batal
+        class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 ml-2">
+        Batal
         </a>
+    </form>
 
-        
-    </form> --}}
+    <script>
+        const coaInput = document.getElementById("coa_code");
+        const categorySelect = document.getElementById("category");
 
-    <form action="{{ route('coa.store') }}" method="POST" class="bg-white p-6 rounded shadow">
-    @csrf
-
-    <label class="block mb-2 font-semibold">Kode COA</label>
-    <input type="text" name="coa_code" 
-           id="coa_code"
-           class="w-full px-3 py-2 border rounded mb-4">
-    
-    @error('coa_code_error_message')
-        <div class="text-red-500">{{ $message }}</div>
-    @enderror
+        const originalOptions = Array.from(categorySelect.options);
 
 
-    <label class="block mb-2 font-semibold">Nama Sumber</label>
-    <input type="text" name="name" 
-           class="w-full px-3 py-2 border rounded mb-4">
+        coaInput.addEventListener("beforeinput", function (e) {
+            const value = coaInput.value;
 
-    <label class="block mb-2 font-semibold">Kategori</label>
-    <select name="category" id="category" class="w-full px-3 py-2 border rounded mb-4">
-        @foreach ($categories as $category)
-            <option value="{{ $category->id }}">
-                {{ $category->category_name }}
-            </option>
-        @endforeach
-    </select>  
+            if (value.length >= 3 && e.inputType === "insertText") {
+                e.preventDefault();
+                return;
+            }
 
-    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
-        Simpan
-    </button>
+            if (value.length === 0) {
+                if (e.data !== "4" && e.data !== "6") {
+                    e.preventDefault();
+                    return;
+                }
+            }
 
-    <a href="{{ route('coa.index') }}" 
-       class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 ml-2">
-       Batal
-    </a>
-</form>
-<script>
-    const coaInput = document.getElementById("coa_code");
-    const categorySelect = document.getElementById("category");
+            if (e.data && !/^[0-9]$/.test(e.data)) {
+                e.preventDefault();
+            }
+        });
 
-    const originalOptions = Array.from(categorySelect.options);
+        coaInput.addEventListener("input", function () {
+            const value = this.value.trim();
 
-    coaInput.addEventListener("input", function () {
-        const value = this.value.trim();
+            categorySelect.innerHTML = "";
 
-        categorySelect.innerHTML = "";
+            let filteredOptions;
 
-        let filteredOptions;
+            if (value.startsWith("4")) {
+                filteredOptions = originalOptions.filter(opt =>
+                    opt.dataset.type === "income"
+                );
+            }
+            else if (value.startsWith("6")) {
+                filteredOptions = originalOptions.filter(opt =>
+                    opt.dataset.type === "expense"
+                );
+            }
+            else {
+                filteredOptions = originalOptions;
+            }
 
-        if (value.startsWith("4")) {
-            const allowed = ["1", "2"]; 
+            filteredOptions.forEach(opt => categorySelect.appendChild(opt));
+        });
+    </script>
 
-            filteredOptions = originalOptions.filter(opt =>
-                allowed.includes(opt.value)
-            );
-        } 
-        else {
-            filteredOptions = originalOptions;
-        }
-
-        filteredOptions.forEach(opt => categorySelect.appendChild(opt));
-    });
-</script>
     
 
 @endsection

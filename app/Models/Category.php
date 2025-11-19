@@ -9,7 +9,7 @@ class Category extends Model
 
     public $timestamps = false;
     
-    protected $fillable = ['category_name'];
+    protected $fillable = ['category_name', 'type'];
 
     public function masterChart(){
         return $this->hasMany(MasterChart::class);
