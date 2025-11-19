@@ -40,22 +40,33 @@ class MasterChartController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'coa_code' => 'required|numeric|digits:3',
-            'name' => 'required|string|max:255'
-        ]);
+{
+    $request->validate([
+        'coa_code' => 'required|numeric|digits:3',
+        'name' => 'required|string|max:255'
+    ]);
 
+    try {
         MasterChart::create([
             'coa_code' => $request->coa_code,
             'name' => $request->name,
             'category_id' => $request->category
         ]);
 
-        return redirect()
-            ->route('coa.index')
-            ->with('success', 'new data row at coa table has been added');
+    } catch (\Illuminate\Database\QueryException $e) {
+        
+        if ($e->errorInfo[1] == 1062) {
+            return back()
+                ->withErrors(['coa_code_error_message' => 'Kode COA sudah terdaftar! Gunakan kode lain'])
+                ->withInput();
+        }
+        throw $e;
     }
+
+    return redirect()->route('coa.index')
+        ->with('success', 'new data row at coa table has been added');
+}
+
 
     /**
      * Show the form for editing the specified resource.
