@@ -23,7 +23,9 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $items = MasterChart::all();
+        
+        $items = MasterChart::with('category')->get();
+        
         return view('transaction.create', ['items' => $items]);
     }
 

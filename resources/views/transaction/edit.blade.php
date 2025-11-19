@@ -34,14 +34,27 @@
                value="{{$transaction->desc}}">
 
         <label class="block mb-2 font-semibold">Debit</label>
-        <input type="text" name="debit" 
-               class="w-full px-3 py-2 border rounded mb-4"
-               value="{{$transaction->debit}}">
+        <input 
+            type="text" 
+            name="debit"
+            class="w-full px-3 py-2 border rounded mb-4 
+            {{ $transaction->debit == 0 ? 
+            'opacity-50 cursor-not-allowed bg-gray-100' : '' }}"
+            value="{{ $transaction->debit }}"
+            {{ $transaction->debit == 0 ? 'disabled' : '' }}
+        >
 
         <label class="block mb-2 font-semibold">Kredit</label>
-        <input type="text" name="credit" 
-               class="w-full px-3 py-2 border rounded mb-4"
-               value="{{$transaction->credit}}">
+        <input 
+            type="text" 
+            name="credit"
+            class="w-full px-3 py-2 border rounded mb-4 
+            {{ $transaction->credit == 0 ? 
+            'opacity-50 cursor-not-allowed bg-gray-100' : '' }}"
+            value="{{ $transaction->credit }}"
+            {{ $transaction->credit == 0 ? 'disabled' : '' }}
+        >
+
 
         <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
             Simpan

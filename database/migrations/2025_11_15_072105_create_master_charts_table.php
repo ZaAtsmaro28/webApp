@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('master_charts', function (Blueprint $table) {
             $table->string('coa_code')->primary();
             $table->string('name');
-            $table->foreignId('category_id');
+            $table->foreignId('category_id')
+                ->constrained('categories')   
+                ->onDelete('cascade');
         });
     }
 
